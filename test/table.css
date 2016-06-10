@@ -1,0 +1,17 @@
+
+* {
+    font-size: 20px;
+}
+
+#tableCont {
+    width: auto;
+    border: dotted 3px darkslategrey;
+}
+table {
+      margin: auto;
+}
+    table td { text-align:center; }
+    tbody td:nth-child(1) { width: 30px; }
+    tbody td:nth-child(2) { width: 370px; }
+    tbody td:nth-child(3) { width: 320px; }
+    tbody td:nth-child(4) { width: 10px; }

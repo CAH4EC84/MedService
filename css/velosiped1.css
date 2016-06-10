@@ -1,0 +1,61 @@
+
+* {
+    font-size: 15px;
+}
+
+
+.maincontainer > div, .maincontainer > input {
+    display: none;
+}
+
+/*Обводим вкладки в рамку и настраиваем её*/
+.maincontainer label {
+    padding: 5px;
+    border: 1px solid #aaa;
+    line-height: 28px;
+    cursor: pointer;
+    position: relative;
+    bottom: 1px;
+    background: #fff;
+}
+
+/*Скрываем дополнительные блоки*/
+.maincontainer .details{
+    background: grey;
+
+}
+
+/*Убираем нижнию границу у вкладок*/
+.maincontainer input[type="radio"]:checked + label {
+    border-bottom: 2px solid #fff;
+}
+/*Если чекбокс выбран*/
+.maincontainer > #subsInfo:checked ~ .maincontainer-subsInfo,
+.maincontainer > #firmsInfo:checked ~ .maincontainer-firmsInfo,
+.maincontainer > #moreInfo:checked ~ .maincontainer-moreInfo {
+    display: block;
+    padding: 5px;
+    border: 1px solid #aaa;
+}
+
+
+/*Ширина столбцов*/
+input {
+    background: azure;
+}
+    input:focus {
+        background: bisque;
+    }
+
+.table {
+    margin: auto;
+}
+/*
+.table tbody td:nth-child(1) { width: 30px; }
+.table tbody td:nth-child(2) { width: 370px; }
+.table tbody td:nth-child(3) { width: 320px; }
+.table tbody td:nth-child(4) { width: 10px; }
+*/
+.table table td {text-align:center;}
+
+/*input {width: 200px}*/

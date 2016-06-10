@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>jqGrid поиск</title>
+
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    
+    <meta name="description" content="jqGrid поиск" />
+    <meta name="keywords" content="jqGrid, javascript, jquery" />
+    
+	<link rel="stylesheet" type="text/css" media="screen" href="css/smoothness/jquery-ui-1.7.2.custom.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+</head>
+<body>
+	<table id="list"></table> 
+	<div id="pager"></div>
+
+    <p>Для поиска нажмите кнопку с изображением лупы (в левом нижнем углу)</p>
+    <p>Вы можете добавлять и удалять условия поиска с помощью кнопок "плюс" и "минус", которые расположены справа от условия.</p>
+    <p>Esc - закрывает форму поиска</p>
+    <p>Описание этого примера вы найдете в статье: <a href="http://www.simplecoding.org/jqgrid-poisk-dannyx.html">jqGrid - поиск данных</a>.</p>
+    
+    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="js/i18n/grid.locale-ru.js"></script>
+    <script type="text/javascript" src="js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function(){
+        var lastSel;
+        jQuery("#list").jqGrid({
+            url:'getdata.php',
+            datatype: 'json',
+            mtype: 'POST',
+            colNames:['#', 'Фамилия', 'Имя', 'Отчество'],
+            colModel :[
+                {name:'id', index:'id', width:50, align:'right', search:false}
+                ,{name:'surname', index:'surname', width:150, align:'right', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}}
+                ,{name:'fname', index:'fname', width:150, align:'right', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}}
+                ,{name:'lname', index:'lname', width:150, align:'right', editable:true, edittype:"text", searchoptions:{sopt:['eq','ne','bw','cn']}}
+                ],
+            pager: jQuery('#pager'),
+            rowNum:5,
+            rowList:[5,10,30],
+            sortname: 'id',
+            sortorder: "asc",
+            viewrecords: true,
+            caption: 'Данные пользователей',
+            ondblClickRow: function(id) {
+                if (id && id != lastSel) {
+                    jQuery("#list").restoreRow(lastSel);
+                    jQuery("#list").editRow(id, true);
+                    lastSel = id;
+                }
+            },
+            editurl: 'saverow.php'
+        }).navGrid('#pager',{view:false, del:false, add:false, edit:false}, 
+			{}, //  default settings for edit
+			{}, //  default settings for add
+			{},  // delete instead that del:false we need this
+			{closeOnEscape:true, multipleSearch:true, closeAfterSearch:true}, // search options
+			{} /* view parameters*/
+		); 
+    }); 
+    </script>
+</body>
+</html>

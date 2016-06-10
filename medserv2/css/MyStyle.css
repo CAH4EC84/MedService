@@ -1,0 +1,33 @@
+#gbox_firmsInSubs {
+    margin-bottom: 20px;
+}
+
+.ui-datepicker{z-index: 999 !important} /*дата пикер поверх остальных окн*/
+
+.wrapper
+{
+    height:700px;
+}
+
+.left_block {
+    width: 400px; /*Ўирина сло€*/
+    float: left; /* ќбтекание по правому краю */
+    height: 600px;
+}
+.right_block {
+    padding-left: 15px;
+    padding-top: 2px;
+    float:left;
+    width: 900px;
+    height: 600px;
+}
+
+#datePickers {
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+    text-align:center
+}
+.datePickerIco {
+    display: inline-block;
+    height: 13px;
+}
