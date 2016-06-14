@@ -2,131 +2,105 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--Jquery UI-->
-    <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
-    <link rel="stylesheet" href="css/jquery-ui-1.11.4.custom/jquery-ui.css">
+    <!-- Сторонние библиотеки-->
+    <script src="lib/js/jquery-2.1.4.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/jquery-ui.css">
 
-    <!--Плагин таблиц jqGrid-->
-    <script type="text/javascript" src="js/i18n/grid.locale-ru.js"></script>
-    <script type="text/javascript" src="js/jquery.jqGrid.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script src="lib/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+    <script src="lib/js/i18n/grid.locale-ru.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/ui.jqgrid.css">
     <link rel="stylesheet" href="css/jqG.css">
 
-    <!--Плагин графиков CanvasJS-->
-    <script type="text/javascript" src="js/jquery.canvasjs.min.js"></script>
+    <script src="lib/js/jquery-ui.js" type="text/javascript"></script>
+    <script src="lib/js/jquery.canvasjs.min.js" type="text/javascript"></script>
+    <!-- Мои скрипты и стили-->
+    <script type="text/javascript" src="js/tabInitialized.js"></script>
+    <script type="text/javascript" src="js/tab1/subsTable.js"></script>
+    <script type="text/javascript" src="js/tab1/subsTableSubGrid.js"></script>
+    <script type="text/javascript" src="js/tab1/getQueryText.js"></script>
+    <script type="text/javascript" src="js/tab1/firmsInSubs.js"></script>
+    <script type="text/javascript" src="js/tab1/firmsInSubsSubGrid.js"></script>
+    <script type="text/javascript" src="js/tab2/firmsTable.js"></script>
+    <script type="text/javascript" src="js/tab2/firmsTableSubGrid.js"></script>
+    <script type="text/javascript" src="js/tab3/makeReport.js"></script>
+    <script type="text/javascript" src="js/tab3/showArcReport.js"></script>
+    <script type="text/javascript" src="js/tab3/helpIcon.js"></script>
+    <!--<script type="text/javascript" src="js/"></script>-->
+    <!--<script type="text/javascript" src="js/"></script>-->
+    <script type="text/javascript" src="js/uuid.js"></script>
 
-    <!--Плагин MultiSelect-->
-    <script type="text/javascript" src="js/multiselect.min.js"></script>
-    <link rel="stylesheet" href="lib/google-code-prettify/prettify.css" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/2.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/MyStyle.css">
 
-    <!--Мой CSS-->
-    <link rel="stylesheet" href="css/Algol.css">
-    <!--Мой JS-->
-    <script type="text/javascript" src="js/repa.js"></script>
-
-    <title>МедСервис</title>
+    <title>МедСервис2</title>
 </head>
 <body>
-<div id="loading"></div>
 <div id="tabs">
     <ul>
         <li><a href="#tabs-1">Подписки</a></li>
         <li><a href="#tabs-2">Фирмы</a></li>
-        <li><a href="#tabs-3">Структура прайса</a></li>
-        <li><a href="#tabs-4">Графики</a></li>
+        <li><a href="#tabs-3">Отчеты</a></li>
     </ul>
     <div id="tabs-1">
-        <table id="subsInfo"><tr><td></td></tr></table>
-        <div id="pager"></div>
+        <table id="firmsInSubs">
+            <tr><td></td></tr>
+            <div id="firmsInSubsPager"></div>
+        </table>
+        <table id="subsTable">
+            <tr><td></td></tr>
+        </table>
+        <div id="subsPager"></div>
+        <div id="queryTextModal"></div>
     </div>
+
     <div id="tabs-2">
-        <table id="firmsInfo"><tr><td></td></tr></table>
-        <div id="pager2"></div>
+        <table id="firmsTable">
+            <tr><td></td></tr>
+        </table>
+        <div id="firmsPager"></div>
     </div>
+
     <div id="tabs-3">
-            <input id="nodes_id" type="text" size="4">
-            <input id="doc_id" type="text" size="4">
-            <input type="button" value="request">
-        <div id="sqlStructureResult" >
-            SQL STRUCTURE
+        <!--Выбор даты-->
+        <div id="datePickers" >
+            <input id="fromDate" class="datePicker">
+            <span class="ui-icon ui-icon-carat-2-e-w datePickerIco"></span>
+            <input id="toDate" class="datePicker">
+            <input type="checkbox" id="toMail"><label for="toMail">Mail</label>
+            <input type="text" id="mailAddress" placeholder="Введите Email">
         </div>
-    </div>
-    <div id ="tabs-4">
-        <div id="report-accordion">
-            <h3><a href="#">Документы </a></h3>
-            <div>
-                <div class="chartOptions">
-                    <input id="chartlinesfrom"> по <input id="chartlinesto">
-                    <br>
-                    <select name="range" id="range">
-                        <option>День</option>
-                        <option>Месяц</option>
-                        <option>Год</option>
-                    </select>
-                    <select name="type" id="type">
-                        <option>Заказ</option>
-                        <option>Конкурс</option>
-                    </select>
-                    <select name="level" id="level">
-                        <option>Все заказы</option>
-                        <option>Регионы</option>
-                        <option>Апт. Сети</option>
-                        <option>Аптеки</option>
-                        <option>Поставщики</option>
-                    </select>
-                    <br>
-                    <input id="summFilter" type="text" placeholder="Фильтр суммы">
-                </div>
-                <div id="divMultiSelect">
-                    <div class="row-fluid">
-                        <div class="span5">
-                            <select name="from" id="multiselect" class="span12" size="8" multiple="multiple">
-                            </select>
+        <div class="wrapper">
+            <div class="left_block">
+                <div id="reportListAccordion">
+                    <h3>Параметры отчета.</h3>
+                    <!--Параметры отчета-->
+                    <div>
+                        <select id="reportType">
+                            <option value="productionReport" selected>Отчет по продукции</option>
+                            <option value="orderReport">Отчет по заказам</option>
+                        </select>
+                        <table id="reportOption">
+                            <tr><td></td></tr>
+                        </table>
+                        <div>
+                            <input type="text" id="reportComment" class="tooltip" placeholder="Ваш комментарий">
+                            <a href="#">
+                                <!--Кнопка справки -->
+                                <img id="helpIcon" src="css/images/help_icon.gif" />
+                                <div id="helpTextModal">
+                                </div>
+                            </a>
                         </div>
-                        <div class="span2">
-                            <button type="button" id="multiselect_rightAll" class="btn btn-block"><i class="icon-forward"></i></button>
-                            <button type="button" id="multiselect_rightSelected" class="btn btn-block"><i class="icon-chevron-right"></i></button>
-                            <button type="button" id="multiselect_leftSelected" class="btn btn-block"><i class="icon-chevron-left"></i></button>
-                            <button type="button" id="multiselect_leftAll" class="btn btn-block"><i class="icon-backward"></i></button>
-                        </div>
-                        <div class="span5">
-                            <select name="to" id="multiselect_to" class="span12" size="8" multiple="multiple"></select>
-                        </div>
+                        <button id="generateReport">Сформировать</button>
                     </div>
                 </div>
-                <input type="button" value="Запрос" id="requestChart">
-                <div id="completeChart">
-                    <div id="chartdivlines" class="mychart" style="height: 500px; width: 100%;" ></div>
-                </div>
             </div>
-            <h3><a href="#">Позиции</a></h3>
-            <div>
-                <div class="chartOptions">
-                    <input id="chartpiefrom"> по <input id="chartpieto">
-                    <br>
-                    <select name="pietype" id="pietype">
-                        <option>Топ препаратов</option>
-                        <option>Топ продавцов</option>
-                    </select>
-                    <select name="piegroup" id="piegroup">
-                        <option>Продукция</option>
-                        <option>Продукция + Производитель</option>
-                    </select>
-                    <select name="pierange" id="pierange">
-                        <option>Сумма</option>
-                        <option>Количество</option>
-                        <option>Обращаемость</option>
-                    </select>
-                    <br>
-                    <input id="piesummFilter" type="text" placeholder="Фильтр суммы">
-                    <input id="pieProductFilter" type="text" placeholder="Фильтр препарат">
-                    <input id="pieProducerFilter" type="text" placeholder="Фильтр производителя">
-                    <br>
-                    <input type="button" value="Запрос" id="requesPeiChart">
-                    <div id="chartdivpie" class="mychart" style="height: 500px; width: 100%;" ></div>
+            <!--Архив отчетов-->
+            <div class="right_block">
+                <div id="arcReport">
+                    <table id="selectArcReport">
+                        <tr><td></td></tr>
+                    </table>
+                    <div id="arcReportPager"></div>
                 </div>
             </div>
         </div>
@@ -134,6 +108,3 @@
 </div>
 </body>
 </html>
-
-
-
