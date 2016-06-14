@@ -36,7 +36,7 @@ function showArcReport () {
         if (link=='No rows') {
             return "No data returned";
         } else {
-            return "<a href='../medserv2/output/" + link + "' download> Скачать </a>  ";
+            return "<a href='../output/" + link + "' download> Скачать </a>  ";
         }
     }
 

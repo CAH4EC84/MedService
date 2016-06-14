@@ -76,7 +76,6 @@ class Report
 	                              Left Join medline39.dbo.FIRMS as Аптечная_сеть on Аптечная_сеть.ID=ИдАптечнойСети
 	                              Left Join medline39.dbo.FIRMS as Поставщик on Поставщик.ID=ИдПоставщика
 	                              Left Join medline39.dbo.REGIONS as Регион on Регион.ID=ИдРегиона";
-                //$this->subQuery= " into [$tname] from ".$this->subQuery;
                 break;
             case 'productionReport':
                 $this->title = 'Отчет по продукции';
@@ -102,7 +101,6 @@ class Report
 	                              Left Join medline39.dbo.FIRMS as Аптечная_сеть on Аптечная_сеть.ID=ИдАптечнойСети
 	                              Left Join medline39.dbo.FIRMS as Поставщик on Поставщик.ID=ИдПоставщика
 	                              Left Join medline39.dbo.REGIONS as Регион on Регион.ID=ИдРегиона";
-                //$this->subQuery= " into [$tname] from ".$this->subQuery;
                 break;
             case 3:
                 $this->title = 'Отчет по оборотам';

@@ -87,7 +87,6 @@ while($row=sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)) {
     $s .= "<cell>". $row['GenerationDate']."</cell>";
     $s .= "<cell>". $row['DateRange']."</cell>";
     ($row['rowsCount']==0) ? $s .="<cell><![CDATA[No rows]]></cell>" : $s .= "<cell><![CDATA[".$row['FileName']."]]></cell>";
-    //$s .= "<cell><![CDATA[".$row['FileName']."]]></cell>";
     $s .= "<cell>".$row['rowsCount']."</cell>";
     $s .= "<cell><![CDATA[".$row['comment']."]]></cell>";
     $s .= "</row>";
