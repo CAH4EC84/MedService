@@ -214,7 +214,7 @@ class Report
         echo $limit;
             if ($result && $limit > 0 ) {
                 //Выводим результат.
-                $cmd = 'bcp "'.$queryTmp.' FOR XML PATH,ROOT(\'UID\')" queryout d:\UniServerZ\www\medserv2\output' . "\\" . $fname . ' -w -r  -S meddb -U sa -P supertrimcreator';
+                $cmd = 'bcp "'.$queryTmp.' FOR XML PATH,ROOT(\'UID\')" queryout d:\UniServerZ\www\output' . "\\" . $fname . ' -w -r  -S meddb -U sa -P supertrimcreator';
                 echo "<hr>$cmd";
                 exec($cmd);
                 sqlsrv_query($conn, "DROP TABLE upi_0_2.dbo.[$tname]") or die (print_r(sqlsrv_errors(), true));
@@ -268,6 +268,23 @@ $object->construct_sql($_GET['fields'],$tablename,$repDateList);
 //Выгружаем отчет через BCP, и регистрируем его в списке сгенерированных отчетов
 $object->export_result($conn,$filename,$object->query,$tablename);
 
+
+if ($mail) {
+    $subject = "$object->title -"." $object->comment";
+    $message = "
+<html>
+    <head>
+    </head>
+    <body>
+        <a href='http://medserv.medline.spb.ru/output/$filename'>Скачать отчет</a>
+    </body>
+</html>";
+
+    $headers  = "Content-type: text/html; charset=UTF-8 \r\n";
+    $headers .= "From: Medserv Report Module <".$medserv['from_email']."\r\n";
+    $headers .= "Bcc: ".$medserv['from_email']."\r\n";
+    mail($mail, $subject, $message, $headers);
+}
 
 
 
