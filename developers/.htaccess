@@ -1,0 +1,54 @@
+#------------------------------------------------------------------------------
+# Server root folder www .htaccess
+# This file provides server security limiting access to the localhost only.
+# Comment next four lines to deactivate. (Allows external access)
+#------------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------------
+# To allow execution of cgi scripts in this directory uncomment next two lines.
+#------------------------------------------------------------------------------
+
+AddHandler cgi-script .pl .cgi
+Options +ExecCGI +FollowSymLinks
+
+#------------------------------------------------------------------------------
+# Activate this section to use the Private Server Feature!
+# Defaults: Username - root; Password - root
+# Note AuthUserFile: File path is relative to server root
+# To lock server, uncomment the next 4 lines. (A name and password is required)
+#------------------------------------------------------------------------------
+
+#AuthName "Uniform Server - Server Access"
+#AuthType Basic
+#AuthUserFile ../../htpasswd/www/.htpasswd
+#Require valid-user
+
+
+
+
+#Allow from all
+Order Deny,Allow
+Deny from all
+Allow from 127.0.0.1
+Allow from ::1
+Allow from 192.168.2.37
+#Allow from sysadmin.medline.spb.ru
+#Allow from itoper.medline.spb.ru
+#Allow from bdoperator.medline.spb.ru
+#Allow from zakoper.medline.spb.ru
+#Allow from sysoper.medline.spb.ru
+#Allow from tenderoper.medline.spb.ru
+#Allow from farmop.medline.spb.ru
+#Allow from dpr.medline.spb.ru
+#Allow from konfcomp.medline.spb.ru
+#Allow from unifpc2.medline.spb.ru
+#Allow from medoper.medline.spb.ru
+#Allow from 192.168.2.35
+#Allow from 192.168.2.41
+#Allow from 192.168.2.42
+#Allow from 192.168.2.45
+#Allow from 192.168.2.21
+DirectoryIndex index.html
+Options -Indexes

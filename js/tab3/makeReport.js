@@ -120,7 +120,7 @@ function generateReport (repType,repFields) {
         timeout:600000,
         async:true,
         methode:'GET',
-        url:'php/tab3/makeReport.php',
+        url:'php/tab3/makeZakReport.php',
         data:{
             from:$("#fromDate").val(),
             to:$("#toDate").val(),

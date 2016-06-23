@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/developers/js/tab1/priceReadErrors.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/developers/php/tab1/priceReadErrors.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/developers/php/tab3/getCrossDilersList.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/developers/php/tab3/getCrossSubsList.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/developers/php/tab3/mail.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/tab3/helpIcon.js" charset="UTF-8" />
   </component>
